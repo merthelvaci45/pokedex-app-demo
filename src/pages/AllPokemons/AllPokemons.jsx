@@ -1,7 +1,7 @@
 import classes from "./AllPokemons.module.scss";
 
 import Layout from "../../components/Layout";
-import Loading from "../../components/Loading";
+import Spinner from "../../components/Spinner";
 import PokemonItem from "../../components/PokemonItem";
 
 import { useAPI } from "../../hooks";
@@ -13,7 +13,7 @@ const AllPokemons = () => {
   const [allPokemons, isLoading] = useAPI({});
 
   return isLoading ? (
-    <Loading />
+    <Spinner isFullScreenSize />
   ) : (
     <Layout
     //style={{ gridTemplateRows: `repeat(${allPokemons.length / 2}, 8rem)` }}
