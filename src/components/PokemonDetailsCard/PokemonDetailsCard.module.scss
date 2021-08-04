@@ -1,0 +1,60 @@
+@import "../../scss/mixins";
+@import "../../scss/utilities";
+@import "../../scss/variables";
+
+.Card {
+  @include display_flex(row, space-around, center);
+  width: 100%;
+  max-width: 35rem;
+  margin: 0 auto 1rem;
+  padding: 1rem 0;
+  border-radius: 0.375rem;
+  box-shadow: 0 0.5rem 1rem $light-shadow;
+  border: 1px solid $light-shadow;
+
+  & > div {
+    @include display_flex(column, space-evenly, flex-start);
+    width: 50%;
+    height: 100%;
+
+    p {
+      margin-bottom: 0.5rem;
+    }
+  }
+}
+
+.DetailsBold {
+  font-weight: bold;
+  margin-right: 0.25rem;
+}
+
+.ButtonsGroup {
+  @include display_flex(row, space-between, center);
+  width: 100%;
+}
+
+.Button {
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  color: #ffffff;
+}
+
+@media (min-width: 768px) {
+  .Card {
+    @include display_flex(column, space-around, center);
+
+    & > div {
+      @include display_flex(column, space-evenly, center);
+
+      p {
+        margin-bottom: 0.5rem;
+        font-size: 1.25rem;
+      }
+    }
+  }
+
+  .DetailsBold {
+    font-size: 1.25rem;
+  }
+}
