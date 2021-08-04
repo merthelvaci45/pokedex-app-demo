@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 
 import classes from "./ToggleableFavoriteIcon.module.scss";
 
+import Spinner from "../Spinner";
+
 import { pokedexActions } from "../../store/slices";
 
 import { useFakeProcessing } from "../../hooks";
@@ -36,7 +38,7 @@ const ToggleableFavoriteIcon = ({ pokemon }) => {
       onClick={toggleFavoriteStatusOfPokemonHandler}
     >
       {isDataProcessing ? (
-        <small style={{ fontSize: ".6rem" }}>Loading...</small>
+        <Spinner />
       ) : (
         <i
           className={`${
