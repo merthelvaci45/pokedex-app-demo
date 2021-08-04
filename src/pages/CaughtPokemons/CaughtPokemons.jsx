@@ -1,17 +1,20 @@
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 import Layout from "../../components/Layout";
+import NoResultsFound from "../../components/NoResultsFound";
 import PokemonDetailsCard from "../../components/PokemonDetailsCard";
 
 import { PokemonDetailsModel } from "../../models";
 
 const CaughtPokemons = () => {
   const pokedex = useSelector((state) => state.pokedexSlice.pokedex);
+  const { t } = useTranslation();
 
   return (
     <Layout>
       {pokedex.length === 0 ? (
-        <span>No caught Pokemons</span>
+        <NoResultsFound text={t("No caught Pokemons")} />
       ) : (
         pokedex.map((pokemon) => {
           const { baseExperience, name, weight, imgUrl } = pokemon;
