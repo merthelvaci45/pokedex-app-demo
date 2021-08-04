@@ -30,7 +30,7 @@
 
 @media (min-width: 768px) {
   .Header {
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0;
 
     div > div {
       @include display_flex(row, space-between, center);
