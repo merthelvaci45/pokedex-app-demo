@@ -33,6 +33,7 @@
 .ButtonsGroup {
   @include display_flex(row, space-between, center);
   width: 100%;
+  margin-bottom: 0.35rem;
 }
 
 .Button {
