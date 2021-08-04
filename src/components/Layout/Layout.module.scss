@@ -1,0 +1,6 @@
+@import "../../scss/utilities";
+
+.Layout {
+  @extend .container-fluid;
+  margin-bottom: 2rem;
+}
