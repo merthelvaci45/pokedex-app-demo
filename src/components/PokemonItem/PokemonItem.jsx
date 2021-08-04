@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 
 import classes from "./PokemonItem.module.scss";
 
+import { capitalizeFirstLetter } from "../../utils";
+
 const PokemonItem = ({ pokemonName, id }) => {
   const history = useHistory();
 
@@ -21,7 +23,7 @@ const PokemonItem = ({ pokemonName, id }) => {
       className={classes.Item}
       onClick={navigateToPokemonDetailsPageHandler}
     >
-      <span>{pokemonName}</span>
+      <span>{capitalizeFirstLetter(pokemonName)}</span>
     </button>
   );
 };
