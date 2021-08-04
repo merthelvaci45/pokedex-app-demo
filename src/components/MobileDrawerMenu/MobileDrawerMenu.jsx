@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { useTranslation } from "react-i18next";
 
 import classes from "./MobileDrawerMenu.module.scss";
 
@@ -9,13 +10,17 @@ import { useNavigateToPage } from "../../hooks";
 import { menuItems } from "../../utils";
 
 const MobileDrawerMenu = () => {
-  const context = useContext(DrawerMenuContext);
+  const drawerMenuContext = useContext(DrawerMenuContext);
+  const { t } = useTranslation();
+
   const handlers = useNavigateToPage();
 
   return (
     <div
       className={`${classes.DrawerMenu} ${
-        context.isDrawerMenuOpen ? classes.MenuOpen : classes.MenuClosed
+        drawerMenuContext.isDrawerMenuOpen
+          ? classes.MenuOpen
+          : classes.MenuClosed
       }`}
     >
       {/* <img
@@ -29,7 +34,7 @@ const MobileDrawerMenu = () => {
           className={classes.DrawerMenuItem}
           onClick={handlers[index]}
         >
-          {item}
+          {t(item)}
         </button>
       ))}
     </div>
