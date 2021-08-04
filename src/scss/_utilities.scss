@@ -1,3 +1,5 @@
+@import "./variables";
+
 $steps: (
   10: 10%,
   20: 20%,
@@ -28,13 +30,13 @@ $steps: (
 }
 
 .button-danger {
-  border: 1px solid red;
-  background-color: red;
+  border: 1px solid $error;
+  background-color: $error;
 }
 
 .button-success {
-  border: 1px solid green;
-  background-color: green;
+  border: 1px solid $success;
+  background-color: $success;
 }
 
 @media (min-width: 1200px) {
