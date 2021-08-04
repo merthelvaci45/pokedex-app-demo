@@ -1,9 +1,11 @@
+@import "../../scss/variables";
+
 .IconButton {
   border: none;
   background-color: transparent;
 }
 
 .FavoriteIcon {
-  color: #ea7609;
+  color: $warning;
   font-size: 1.25rem;
 }
