@@ -18,7 +18,7 @@ export const DrawerMenuProvider = ({ children }) => {
 
   return (
     <DrawerMenuContext.Provider value={contextValue}>
-      {children}{" "}
+      {children}
     </DrawerMenuContext.Provider>
   );
 };
