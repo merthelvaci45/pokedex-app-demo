@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
@@ -11,9 +12,15 @@ import ToggleableFavoriteIcon from "../ToggleableFavoriteIcon";
 
 import { PokemonImageModel } from "../../models";
 
+import { useFakeProcessing } from "../../hooks";
+
 const PokemonDetailsCard = ({ details, isFavoriteIconHidden }) => {
   const dispatch = useDispatch();
+  const [isPokemonCaught, setisPokemonCaught] = useState(false);
+  const [isPokemonReleased, setisPokemonReleased] = useState(false);
   const { t } = useTranslation();
+
+  const [isDataProcessing, setIsDataProcessing] = useFakeProcessing();
 
   /**
    * this handler function is responsible for adding a pokemon to pokedex
@@ -23,6 +30,9 @@ const PokemonDetailsCard = ({ details, isFavoriteIconHidden }) => {
     const { baseExperience, name, weight, imgUrl } = pokemon; // destructure "pokemon" object to extract its properties
     const pokemonObj = { baseExperience, name, weight, imgUrl }; // create a JS object out of "pokemon" properties to serialize "pokemon"
     dispatch(pokedexActions.catchPokemon({ pokemon: pokemonObj })); // dispatch required redux action for adding pokemon to pokedex
+    setIsDataProcessing(true);
+    setisPokemonCaught(true);
+    setisPokemonReleased(false);
   };
 
   /**
@@ -31,6 +41,9 @@ const PokemonDetailsCard = ({ details, isFavoriteIconHidden }) => {
    */
   const releasePokemonHandler = (pokemonName) => {
     dispatch(pokedexActions.releasePokemon({ pokemonName }));
+    setIsDataProcessing(true);
+    setisPokemonCaught(false);
+    setisPokemonReleased(true);
   };
 
   return (
@@ -53,14 +66,24 @@ const PokemonDetailsCard = ({ details, isFavoriteIconHidden }) => {
           <button
             className={`${classes.Button} button-success`}
             onClick={catchPokemonHandler.bind(this, details)}
+            disabled={isDataProcessing && isPokemonCaught}
           >
-            {t("CATCH")}
+            {isDataProcessing && isPokemonCaught ? (
+              <span style={{ fontSize: ".7rem" }}>Loading...</span>
+            ) : (
+              t("CATCH")
+            )}
           </button>
           <button
             className={`${classes.Button} button-danger`}
             onClick={releasePokemonHandler.bind(this, details.name)}
+            disabled={isDataProcessing && isPokemonReleased}
           >
-            {t("RELEASE")}
+            {isDataProcessing && isPokemonReleased ? (
+              <span style={{ fontSize: ".7rem" }}>Loading...</span>
+            ) : (
+              t("RELEASE")
+            )}
           </button>
           {details !== undefined && !isFavoriteIconHidden && (
             <ToggleableFavoriteIcon pokemon={details} />
