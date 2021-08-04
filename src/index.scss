@@ -1,0 +1,12 @@
+@import "./scss/mixins";
+@import "./scss/utilities";
+@import "./scss/variables";
+
+* {
+  @include reset;
+
+  &::after,
+  &::before {
+    @include reset;
+  }
+}
