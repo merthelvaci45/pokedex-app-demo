@@ -1,0 +1,15 @@
+.Figure {
+  margin: 0;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  background-color: #eee;
+}
+
+@media (min-width: 768px) {
+  .Figure {
+    width: 10rem;
+    height: 10rem;
+    margin-bottom: 2rem;
+  }
+}
