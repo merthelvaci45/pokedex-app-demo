@@ -7,6 +7,10 @@
   padding: 1rem 0;
   border-bottom: 1px solid $border-color;
   margin-bottom: 2rem;
+
+  div {
+    @include display_flex(row, space-between, center);
+  }
 }
 
 .HeaderLargeMenuItem {
@@ -18,18 +22,20 @@
   text-align: center;
 }
 
+.TranslateButton {
+  border: 1px solid #eeeeee;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
 @media (min-width: 768px) {
   .Header {
     padding: 0.5rem 1rem;
 
-    div {
-      @include display_flex(row, flex-end, center);
-
-      div {
-        @include display_flex(row, space-between, center);
-        height: 100%;
-        width: 31rem;
-      }
+    div > div {
+      @include display_flex(row, space-between, center);
+      height: 100%;
+      width: 31rem;
     }
   }
 }
