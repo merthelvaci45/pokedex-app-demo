@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
 
@@ -16,9 +16,11 @@ import { useFakeProcessing } from "../../hooks";
 
 const PokemonDetailsCard = ({ details, isFavoriteIconHidden }) => {
   const dispatch = useDispatch();
-  const [isPokemonCaught, setisPokemonCaught] = useState(false);
-  const [isPokemonReleased, setisPokemonReleased] = useState(false);
   const { t } = useTranslation();
+  const pokedex = useSelector((state) => state.pokedexSlice.pokedex);
+
+  const [isPokemonCaught, setIsPokemonCaught] = useState(false);
+  const [isPokemonReleased, setIsPokemonReleased] = useState(false);
 
   const [isDataProcessing, setIsDataProcessing] = useFakeProcessing();
 
@@ -31,8 +33,8 @@ const PokemonDetailsCard = ({ details, isFavoriteIconHidden }) => {
     const pokemonObj = { baseExperience, name, weight, imgUrl }; // create a JS object out of "pokemon" properties to serialize "pokemon"
     dispatch(pokedexActions.catchPokemon({ pokemon: pokemonObj })); // dispatch required redux action for adding pokemon to pokedex
     setIsDataProcessing(true);
-    setisPokemonCaught(true);
-    setisPokemonReleased(false);
+    setIsPokemonCaught(true);
+    setIsPokemonReleased(false);
   };
 
   /**
@@ -42,8 +44,8 @@ const PokemonDetailsCard = ({ details, isFavoriteIconHidden }) => {
   const releasePokemonHandler = (pokemonName) => {
     dispatch(pokedexActions.releasePokemon({ pokemonName }));
     setIsDataProcessing(true);
-    setisPokemonCaught(false);
-    setisPokemonReleased(true);
+    setIsPokemonCaught(false);
+    setIsPokemonReleased(true);
   };
 
   return (
@@ -66,7 +68,10 @@ const PokemonDetailsCard = ({ details, isFavoriteIconHidden }) => {
           <button
             className={`${classes.Button} button-success`}
             onClick={catchPokemonHandler.bind(this, details)}
-            disabled={isDataProcessing && isPokemonCaught}
+            disabled={
+              isDataProcessing ||
+              pokedex.some((pokemon) => pokemon.name === details.name)
+            }
           >
             {isDataProcessing && isPokemonCaught ? (
               <span style={{ fontSize: ".7rem" }}>Loading...</span>
@@ -77,7 +82,10 @@ const PokemonDetailsCard = ({ details, isFavoriteIconHidden }) => {
           <button
             className={`${classes.Button} button-danger`}
             onClick={releasePokemonHandler.bind(this, details.name)}
-            disabled={isDataProcessing && isPokemonReleased}
+            disabled={
+              isDataProcessing ||
+              !pokedex.some((pokemon) => pokemon.name === details.name)
+            }
           >
             {isDataProcessing && isPokemonReleased ? (
               <span style={{ fontSize: ".7rem" }}>Loading...</span>
