@@ -6,6 +6,7 @@
   width: 100vw;
   height: 100vh;
 }
+
 .Spinner:after {
   content: " ";
   display: block;
@@ -18,6 +19,7 @@
   border-color: #000 transparent #000 transparent;
   animation: Spinner 1.2s infinite;
 }
+
 @keyframes Spinner {
   0% {
     transform: rotate(0);

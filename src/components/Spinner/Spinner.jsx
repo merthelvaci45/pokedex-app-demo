@@ -1,11 +1,11 @@
-import classes from "./Loading.module.scss";
+import classes from "./Spinner.module.scss";
 
 /**
  * this component display a loading spinner whenever any data in any page/component
  * is being loaded.
  */
-const Loading = () => {
+const Spinner = () => {
   return <div className={classes.Spinner}></div>;
 };
 
-export default Loading;
+export default Spinner;
