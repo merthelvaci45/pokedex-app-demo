@@ -1,0 +1,35 @@
+@import "../../scss/mixins";
+@import "../../scss/variables";
+
+.Header {
+  background-color: #ffffff;
+  height: 3.25rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid $border-color;
+  margin-bottom: 2rem;
+}
+
+.HeaderLargeMenuItem {
+  height: 100%;
+  border: none;
+  padding: 0.5rem 1rem;
+  background-color: #ffffff;
+  font-weight: bold;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .Header {
+    padding: 0.5rem 1rem;
+
+    div {
+      @include display_flex(row, flex-end, center);
+
+      div {
+        @include display_flex(row, space-between, center);
+        height: 100%;
+        width: 31rem;
+      }
+    }
+  }
+}
