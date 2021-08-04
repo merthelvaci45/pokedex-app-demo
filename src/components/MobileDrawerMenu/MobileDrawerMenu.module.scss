@@ -31,3 +31,9 @@
   width: 100%;
   text-align: left;
 }
+
+@media (min-width: 768px) {
+  .DrawerMenu {
+    display: none;
+  }
+}
