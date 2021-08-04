@@ -12,7 +12,7 @@ const DrawerMenuBtn = () => {
 
   return (
     width < 768 && (
-      <button className={classes.DrawerBtn} onClick={context.toggleDrawerMenu}>
+      <button className={classes.DrawerBtn} onClick={context?.toggleDrawerMenu}>
         <span />
       </button>
     )
