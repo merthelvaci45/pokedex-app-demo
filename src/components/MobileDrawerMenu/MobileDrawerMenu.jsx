@@ -15,6 +15,11 @@ const MobileDrawerMenu = () => {
 
   const handlers = useNavigateToPage();
 
+  const clickToDrawerMenuLinkItemHandler = (index) => {
+    drawerMenuContext.toggleDrawerMenu();
+    handlers[index]();
+  };
+
   return (
     <div
       className={`${classes.DrawerMenu} ${
@@ -32,7 +37,7 @@ const MobileDrawerMenu = () => {
         <button
           key={item}
           className={classes.DrawerMenuItem}
-          onClick={handlers[index]}
+          onClick={clickToDrawerMenuLinkItemHandler.bind(this, index)}
         >
           {t(item)}
         </button>
