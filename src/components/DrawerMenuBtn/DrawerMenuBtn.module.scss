@@ -1,0 +1,30 @@
+// Local Mixin
+@mixin drawer-btn-bar($top, $position: absolute) {
+  position: $position;
+  content: "";
+  top: $top;
+  left: 0;
+  display: inline-block;
+  width: 1.25rem;
+  height: 0.1825rem;
+  background-color: #000000;
+  border-radius: 0.125rem;
+}
+
+.DrawerBtn {
+  height: 100%;
+  border: none;
+  background-color: #ffffff;
+
+  span {
+    @include drawer-btn-bar(0, relative);
+
+    &::before {
+      @include drawer-btn-bar(-0.4rem);
+    }
+
+    &::after {
+      @include drawer-btn-bar(0.4rem);
+    }
+  }
+}
