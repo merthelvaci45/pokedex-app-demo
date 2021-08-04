@@ -13,7 +13,7 @@ const AllPokemons = () => {
   const [allPokemons, isLoading] = useAPI({});
 
   return isLoading ? (
-    <Spinner />
+    <Spinner isLargeSpinner />
   ) : (
     <Layout>
       <div className={classes.Pokemons}>
