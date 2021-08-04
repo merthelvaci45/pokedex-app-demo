@@ -1,6 +1,8 @@
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 
+import "./config/i18NextConfig";
+
 import "./index.scss";
 
 import reportWebVitals from "./reportWebVitals";
