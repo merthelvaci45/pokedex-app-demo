@@ -1,0 +1,9 @@
+@import "../../scss/mixins";
+
+.Item {
+  @include display_flex(row, center, center);
+
+  border: none;
+  border-radius: 0.5rem;
+  background-color: #ccc;
+}
