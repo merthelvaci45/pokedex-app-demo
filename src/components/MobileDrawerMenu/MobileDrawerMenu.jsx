@@ -12,6 +12,11 @@ const MobileDrawerMenu = ({ isDrawerMenuOpen, onDismiss }) => {
 
   const handlers = useNavigateToPage();
 
+  /**
+   * this handler function is responsible for dismissing drawer menu and backdrop.
+   * if clicked menu item has a different page route link, user is redirected to that page,
+   * otherwise s/he stays in the same page.
+   */
   const clickToDrawerMenuLinkItemHandler = (index) => {
     onDismiss();
     handlers[index]();
@@ -23,11 +28,6 @@ const MobileDrawerMenu = ({ isDrawerMenuOpen, onDismiss }) => {
         isDrawerMenuOpen ? classes.MenuOpen : classes.MenuClosed
       }`}
     >
-      {/* <img
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/1200px-International_Pok%C3%A9mon_logo.svg.png"
-        alt="Pokemon Logo"
-        style={{ maxWidth: "100%", height: "3rem" }}
-      /> */}
       {menuItems.map((item, index) => (
         <button
           key={item}

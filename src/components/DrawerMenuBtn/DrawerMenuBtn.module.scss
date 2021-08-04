@@ -1,4 +1,6 @@
-// Local Mixin
+// ============ Local Mixin ============
+// this mixin creates a bar in Drawer Menu Button and
+// is positioned based on its $top and $position parameters
 @mixin drawer-btn-bar($top, $position: absolute) {
   position: $position;
   content: "";

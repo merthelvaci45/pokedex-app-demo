@@ -11,8 +11,8 @@ const PokemonItem = ({ pokemonName, id }) => {
 
   /**
    * this handler function is responsible for navigating to a specific page,
-   * in which some detailed information are displayed for the respective
-   * pokemon, on which it was clicked.
+   * in which some detailed information are displayed in a styled Card object
+   * for the respective pokemon, on which it was clicked.
    */
   const navigateToPokemonDetailsPageHandler = () => {
     history.push(`/pokemons/${id}`);

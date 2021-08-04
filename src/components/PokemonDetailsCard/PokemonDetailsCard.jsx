@@ -17,10 +17,10 @@ import { useFakeProcessing } from "../../hooks";
 const PokemonDetailsCard = ({ details, isFavoriteIconHidden }) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const pokedex = useSelector((state) => state.pokedexSlice.pokedex);
+  const pokedex = useSelector((state) => state.pokedexSlice.pokedex); // get "pokedex" state from redux store
 
-  const [isPokemonCaught, setIsPokemonCaught] = useState(false);
-  const [isPokemonReleased, setIsPokemonReleased] = useState(false);
+  const [isPokemonCaught, setIsPokemonCaught] = useState(false); // state to hold if "CATCH" button is pressed or not
+  const [isPokemonReleased, setIsPokemonReleased] = useState(false); // state to hold if "RELEASE" button is pressed or not
 
   const [isDataProcessing, setIsDataProcessing] = useFakeProcessing();
 
@@ -33,8 +33,8 @@ const PokemonDetailsCard = ({ details, isFavoriteIconHidden }) => {
     const pokemonObj = { baseExperience, name, weight, imgUrl }; // create a JS object out of "pokemon" properties to serialize "pokemon"
     dispatch(pokedexActions.catchPokemon({ pokemon: pokemonObj })); // dispatch required redux action for adding pokemon to pokedex
     setIsDataProcessing(true);
-    setIsPokemonCaught(true);
-    setIsPokemonReleased(false);
+    setIsPokemonCaught(true); // set "isPokemonCaught" state to true to state that "CATCH" button is pressed
+    setIsPokemonReleased(false); // set "isPokemonReleased" state to false to state that "CATCH" button is pressed
   };
 
   /**
@@ -44,8 +44,8 @@ const PokemonDetailsCard = ({ details, isFavoriteIconHidden }) => {
   const releasePokemonHandler = (pokemonName) => {
     dispatch(pokedexActions.releasePokemon({ pokemonName }));
     setIsDataProcessing(true);
-    setIsPokemonCaught(false);
-    setIsPokemonReleased(true);
+    setIsPokemonCaught(false); // set "isPokemonCaught" state to false to state that "RELEASE" button is pressed
+    setIsPokemonReleased(true); // set "isPokemonReleased" state to true to state that "RELEASE" button is pressed
   };
 
   return (
@@ -56,7 +56,7 @@ const PokemonDetailsCard = ({ details, isFavoriteIconHidden }) => {
       <div>
         {Object.keys(details.all).map((key, index) => (
           <p key={key}>
-            {index !== 3 && (
+            {index !== 3 && ( // ignore "imgUrl" property as it is not intended to be displayed in the card
               <>
                 <span className={classes.DetailsBold}>{t(key)}:</span>
                 <span>{t(details.all[key])}</span>
@@ -69,6 +69,7 @@ const PokemonDetailsCard = ({ details, isFavoriteIconHidden }) => {
             className={`${classes.Button} button-success`}
             onClick={catchPokemonHandler.bind(this, details)}
             disabled={
+              // disable "CATCH" button either when "isDataProcessing = true" or the pokemon is already caught before
               isDataProcessing ||
               pokedex.some((pokemon) => pokemon.name === details.name)
             }
@@ -83,6 +84,7 @@ const PokemonDetailsCard = ({ details, isFavoriteIconHidden }) => {
             className={`${classes.Button} button-danger`}
             onClick={releasePokemonHandler.bind(this, details.name)}
             disabled={
+              // disable "RELEASE" button either when "isDataProcessing = true" or the pokemon is already released before
               isDataProcessing ||
               !pokedex.some((pokemon) => pokemon.name === details.name)
             }

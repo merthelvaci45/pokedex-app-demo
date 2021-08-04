@@ -1,9 +1,13 @@
+@import "../../scss/mixins";
+@import "../../scss/variables";
+
 .Figure {
+  @include display_flex(row, center, center);
   margin: 0;
   width: 5rem;
   height: 5rem;
   border-radius: 50%;
-  background-color: #eee;
+  background-color: $light-gray;
 }
 
 @media (min-width: 768px) {

@@ -24,6 +24,8 @@ const ToggleableFavoriteIcon = ({ pokemon }) => {
     setIsDataProcessing(true);
   };
 
+  // check if "pokemon" is already marked as favorite or not
+  // if so, display a filled star icon; otherwise display an outlined star icon
   const isPokemonAddedAsFavorite = favoritePokemons.some(
     (poke) => poke.name === pokemon.name
   );

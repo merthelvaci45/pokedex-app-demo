@@ -3,8 +3,10 @@
 .Spinner {
   @include display_flex(row, center, center);
   position: relative;
-  width: 100vw;
-  height: 100vh;
+  /* width: 100vw;
+  height: 100vh; */
+  width: 0.5rem;
+  height: 0.5rem;
 }
 
 .Spinner:after {
@@ -15,7 +17,7 @@
   height: 0;
   margin: 8px;
   box-sizing: border-box;
-  border: 1.25rem solid #000;
+  border: 0.5rem solid #000;
   border-color: #000 transparent #000 transparent;
   animation: Spinner 1.2s infinite;
 }

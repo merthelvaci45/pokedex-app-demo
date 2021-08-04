@@ -10,12 +10,15 @@ import MobileDrawerMenu from "../MobileDrawerMenu";
 /**
  * this component is a wrapper for any page component
  * and it defines the general layout for each page.
+ * namely, it adds a Header, Backdrop and MobileDrawerMenu
+ * to each page by default
  */
 const Layout = ({ children }) => {
-  const [isDrawerMenuOpen, setIsDrawerMenuOpen] = useState(false);
+  const [isDrawerMenuOpen, setIsDrawerMenuOpen] = useState(false); // state to hold status of drawer menu
 
   /**
-   * this handler function is responsible for toggling drawer menu upon clicking drawer menu button for mobile devices
+   * this handler function is responsible for toggling drawer menu
+   * upon clicking drawer menu button and/or Backdrop for mobile devices
    */
   const toggleDrawerMenuDisplayHandler = () =>
     setIsDrawerMenuOpen((prevState) => !prevState);

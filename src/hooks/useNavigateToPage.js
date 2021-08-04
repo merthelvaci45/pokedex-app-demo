@@ -2,6 +2,10 @@ import { useHistory } from "react-router-dom";
 
 import { PAGE_ROUTES } from "../utils";
 
+/**
+ * this hook is responsible for keeping the logic for page navigations
+ * and required handler functions for navigating to a specific page
+ */
 const useNavigateToPage = () => {
   const history = useHistory();
 
@@ -11,13 +15,11 @@ const useNavigateToPage = () => {
   const navigateToFavoritePokemonsPageHandler = () =>
     history.push(PAGE_ROUTES.favoritePokemons);
 
-  const handlers = [
+  return [
     navigateToAllPokemonsPageHandler,
     navigateToCaughtPokemonsPageHandler,
     navigateToFavoritePokemonsPageHandler,
   ];
-
-  return handlers;
 };
 
 export default useNavigateToPage;

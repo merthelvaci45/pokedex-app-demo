@@ -12,6 +12,10 @@ export const LanguageProvider = ({ children }) => {
   const toggleLanguageHandler = () =>
     setCurrentLanguage((prevState) => (prevState === "en" ? "tr" : "en"));
 
+  /**
+   * this hook is responsible for actually changing the app language using "i18next.changeLanguage"
+   * function just after updating "currentLanguage" state
+   */
   useEffect(() => {
     i18next.changeLanguage(currentLanguage);
   }, [currentLanguage]);

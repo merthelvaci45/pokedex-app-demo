@@ -11,9 +11,9 @@ const useFakeProcessing = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsDataProcessing(false);
-    }, 500);
+    }, 1500);
 
-    return () => clearTimeout(timer);
+    return () => clearTimeout(timer); // remove "timer" after each render to prevent possible memory leaks
   }, [isDataProcessing]);
 
   return [isDataProcessing, setIsDataProcessing];

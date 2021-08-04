@@ -4,9 +4,13 @@ import axios from "axios";
 import { API_BASE_URL, API_METHODS } from "../utils";
 
 /**
- * this hook is responsible for making an API request using its 2 named arguments "queryString" and "method".
- * both of them have their respective default values in case they are not provided as arguments when the hook is invoked.
- * "method" parameter is defined to have an "enum" like valuep provided by "API_METHODS" object. for further details,
+ * this hook is responsible for making an API request using its 2 named parameters "queryString" and "method",
+ * and two positional arguments "headers" and "body". note that "headers" and "body" parameters are here just for
+ * reference to denote that this hook can also be used for other API method invocations (POST, PUT etc.) and not
+ * just for GET requests.
+ * "queryString" and "method" paramters have their respective default values in case they are not provided as
+ * arguments when the hook is invoked.
+ * "method" parameter is defined to have an "enum" like value provided by "API_METHODS" object. for further details,
  * please refer to "../utils/constants.js".
  */
 const useAPI = ({
@@ -15,7 +19,7 @@ const useAPI = ({
   headers = {},
   body = {},
 }) => {
-  const [apiData, setApiData] = useState();
+  const [apiData, setApiData] = useState(); // state to hold returned API data from backend in case of successful request
   const [isLoading, setIsLoading] = useState(false); // state to be set while API request is in progress and to display user a loading indicator
   const [isError, setIsError] = useState(false); // state to be set in case of any error while making request to API
 
@@ -44,7 +48,7 @@ const useAPI = ({
             return;
         }
       } catch (error) {
-        setIsError(false);
+        setIsError(true); // set "isError" state to true in case of error
         console.log(error);
       } finally {
         setIsLoading(false); // no matter what returns from API call, set "isLoading" status to false.

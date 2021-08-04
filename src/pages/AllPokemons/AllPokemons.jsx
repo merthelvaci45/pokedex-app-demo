@@ -13,11 +13,9 @@ const AllPokemons = () => {
   const [allPokemons, isLoading] = useAPI({});
 
   return isLoading ? (
-    <Spinner isFullScreenSize />
+    <Spinner />
   ) : (
-    <Layout
-    //style={{ gridTemplateRows: `repeat(${allPokemons.length / 2}, 8rem)` }}
-    >
+    <Layout>
       <div className={classes.Pokemons}>
         {allPokemons?.results.map((pokemon) => (
           <PokemonItem

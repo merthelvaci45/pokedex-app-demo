@@ -1,3 +1,4 @@
+@import "./mixins";
 @import "./variables";
 
 $steps: (
@@ -29,25 +30,9 @@ $steps: (
   margin: auto;
 }
 
-.button-danger {
-  border: 1px solid $error;
-  background-color: $error;
-
-  &:disabled {
-    border: 1px solid lighten($error, 15%);
-    background-color: lighten($error, 15%);
-  }
-}
-
-.button-success {
-  border: 1px solid $success;
-  background-color: $success;
-
-  &:disabled {
-    border: 1px solid lighten($success, 15%);
-    background-color: lighten($success, 15%);
-  }
-}
+// create danger and success buttons using "button" mixin defined in "./_mixins.scss" file
+@include button(danger, $error);
+@include button(success, $success);
 
 @media (min-width: 1200px) {
   .container-fluid {

@@ -1,7 +1,5 @@
 import { useParams } from "react-router-dom";
 
-//import classes from "./PokemonDetails.module.scss";
-
 import { useAPI } from "../../hooks";
 import { PokemonDetailsModel } from "../../models";
 
@@ -9,16 +7,15 @@ import Layout from "../../components/Layout";
 import PokemonDetailsCard from "../../components/PokemonDetailsCard";
 
 const PokemonDetails = () => {
-  const { id } = useParams(); // extract dynamic parameters from page URL, e.g. "/pokemons/4/charmander", where id=4 and name="charmander"
+  const { id } = useParams(); // extract dynamic "id" parameter from page URL, e.g. "/pokemons/4", where id = 4
   const [apiData] = useAPI({
     queryString: `${id}`,
-  });
+  }); // fetch data for a particular pokemon from API. an example request path: https://pokeapi.co/api/v2/pokemon/1/
 
   /**
-   * "pokemonDetails" is an object/class which is defined by the blueprint of "PokemonDetailsModel".
-   * it holds a simple object, in which there are 3 defined class properties, one of which is "baseExperience",
-   * another of which is "name" and the other one of which is "weight". Further properties may even be added
-   * to "PokemonDetailsModel" later on...
+   * "pokemonDetails" is a class which is defined by the blueprint of "PokemonDetailsModel".
+   * it holds a simple object, in which there are 4 defined class properties, one of which is "baseExperience",
+   * another of which are "name", "weight" and "imgUrl. Further properties may even be added to "PokemonDetailsModel" later on...
    */
   const pokemonDetails = new PokemonDetailsModel(
     apiData?.base_experience,

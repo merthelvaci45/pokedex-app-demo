@@ -10,13 +10,14 @@
   padding: 1rem 0;
   border-radius: 0.375rem;
   box-shadow: 0 0.5rem 1rem $light-shadow;
+  // add vendor prefixes for "box-shadow" property
   -webkit-box-shadow: 0 0.5rem 1rem $light-shadow; /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
   -moz-box-shadow: 0 0.5rem 1rem $light-shadow; /* Firefox 3.5 - 3.6 */
   border: 1px solid $light-shadow;
 
   & > div {
     @include display_flex(column, space-evenly, flex-start);
-    width: 50%;
+    width: 60%;
     height: 100%;
 
     p {
