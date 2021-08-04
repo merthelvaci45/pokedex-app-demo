@@ -1,0 +1,33 @@
+@import "../../scss/mixins";
+@import "../../scss/variables";
+
+.DrawerMenu {
+  position: fixed;
+  top: 0;
+  width: 70vw;
+  height: 100vh;
+  padding: 2rem 0;
+  background-color: #ffffff;
+  border-right: 1px solid $border-color;
+  @include display_flex(column, flex-start, flex-start);
+
+  transition: left 0.5s;
+}
+
+.MenuOpen {
+  left: 0;
+}
+
+.MenuClosed {
+  left: -100vw;
+}
+
+.DrawerMenuItem {
+  border: none;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  background-color: #eeeeee;
+  font-weight: bold;
+  width: 100%;
+  text-align: left;
+}
