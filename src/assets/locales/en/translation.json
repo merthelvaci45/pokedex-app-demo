@@ -1,5 +1,12 @@
 {
   "ALL POKEMONS": "ALL POKEMONS",
   "CAUGHT POKEMONS": "CAUGHT POKEMONS",
-  "FAVORITE POKEMONS": "FAVORITE POKEMONS"
+  "FAVORITE POKEMONS": "FAVORITE POKEMONS",
+  "Base Experience": "Base Experience",
+  "Name": "Name",
+  "Weight": "Weight",
+  "CATCH": "CATCH",
+  "RELEASE": "RELEASE",
+  "No caught Pokemons": "No caught Pokemons",
+  "No favorite Pokemons": "No favorite Pokemons"
 }
