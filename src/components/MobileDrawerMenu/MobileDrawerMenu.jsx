@@ -1,31 +1,26 @@
-import { useContext } from "react";
+import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
 
 import classes from "./MobileDrawerMenu.module.scss";
-
-import { DrawerMenuContext } from "../../context";
 
 import { useNavigateToPage } from "../../hooks";
 
 import { menuItems } from "../../utils";
 
-const MobileDrawerMenu = () => {
-  const drawerMenuContext = useContext(DrawerMenuContext);
+const MobileDrawerMenu = ({ isDrawerMenuOpen, onDismiss }) => {
   const { t } = useTranslation();
 
   const handlers = useNavigateToPage();
 
   const clickToDrawerMenuLinkItemHandler = (index) => {
-    drawerMenuContext.toggleDrawerMenu();
+    onDismiss();
     handlers[index]();
   };
 
   return (
     <div
       className={`${classes.DrawerMenu} ${
-        drawerMenuContext.isDrawerMenuOpen
-          ? classes.MenuOpen
-          : classes.MenuClosed
+        isDrawerMenuOpen ? classes.MenuOpen : classes.MenuClosed
       }`}
     >
       {/* <img
@@ -44,6 +39,15 @@ const MobileDrawerMenu = () => {
       ))}
     </div>
   );
+};
+
+MobileDrawerMenu.propTypes = {
+  isDrawerMenuOpen: PropTypes.bool,
+  onDismiss: PropTypes.func.isRequired,
+};
+
+MobileDrawerMenu.defaultProps = {
+  isDrawerMenuOpen: false,
 };
 
 export default MobileDrawerMenu;

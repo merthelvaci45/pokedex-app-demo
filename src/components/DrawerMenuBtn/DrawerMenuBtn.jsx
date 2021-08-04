@@ -1,22 +1,17 @@
-import { useContext } from "react";
+import PropTypes from "prop-types";
 
 import classes from "./DrawerMenuBtn.module.scss";
 
-import { DrawerMenuContext } from "../../context";
-
-import { useWindowDimensions } from "../../hooks";
-
-const DrawerMenuBtn = () => {
-  const context = useContext(DrawerMenuContext);
-  const { width } = useWindowDimensions();
-
+const DrawerMenuBtn = ({ onToggleMenu }) => {
   return (
-    width < 768 && (
-      <button className={classes.DrawerBtn} onClick={context?.toggleDrawerMenu}>
-        <span />
-      </button>
-    )
+    <button className={classes.DrawerBtn} onClick={onToggleMenu}>
+      <span />
+    </button>
   );
+};
+
+DrawerMenuBtn.propTypes = {
+  onToggleMenu: PropTypes.func.isRequired,
 };
 
 export default DrawerMenuBtn;
