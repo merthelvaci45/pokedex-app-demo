@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 
+import { axiosInstance } from "../config";
 import { API_BASE_URL, API_METHODS } from "../utils";
 
 /**
@@ -33,7 +33,7 @@ const useAPI = ({
 
         switch (method) {
           case API_METHODS.GET:
-            const { data } = await axios[method](
+            const { data } = await axiosInstance[method](
               `${API_BASE_URL}/${queryString}`
             ); // make API request
             setApiData(() => data); // update "apiData" state
