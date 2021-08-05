@@ -9,6 +9,7 @@ import classes from "./Spinner.module.scss";
 const Spinner = ({ isLargeSpinner }) => {
   return (
     <div
+      role="none"
       className={`${classes.Spinner} ${
         isLargeSpinner ? classes.LargeSpinner : classes.SmallSpinner
       }`}
