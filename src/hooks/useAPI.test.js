@@ -4,6 +4,7 @@ import MockAdapter from "axios-mock-adapter";
 import useAPI from "./useAPI";
 
 import { axiosInstance } from "../config";
+import { API_BASE_URL } from "../utils";
 
 let mock;
 
@@ -19,28 +20,29 @@ describe("useAPI hook", () => {
     // prepare a mocked return data
     const mockData = {
       count: 1,
-      next: "https://pokeapi.co/api/v2/pokemon?offset=20&limit=20",
+      next: `${API_BASE_URL}?offset=20&limit=20`,
       preivous: null,
       results: [
         {
           name: "bulbasaur",
-          url: "https://pokeapi.co/api/v2/pokemon/1/",
+          url: `${API_BASE_URL}/1/`,
         },
       ],
     };
 
-    const url = "https://pokeapi.co/api/v2/pokemon/";
-    mock.onGet(url).reply(200, mockData); // simulate a successful GET request using status code of "200" and "mockData" as response data
+    mock.onGet(API_BASE_URL).reply(200, mockData); // simulate a successful GET request using status code of "200" and "mockData" as response data
 
-     // simulate invocation of hook as if it is rendered within a component
-     // by the help of "renderHook" provided by "@testing-library/react-hooks"
-     // extract "result" and "waitForNextUpdate" from "renderHook" return
-    const { result, waitForNextUpdate } = renderHook(() => useAPI({}));
+    // simulate invocation of hook as if it is rendered within a component
+    // by the help of "renderHook" provided by "@testing-library/react-hooks"
+    // extract "result" and "waitForNextUpdate" from "renderHook" return
+    const { result, waitForNextUpdate } = renderHook(() =>
+      useAPI({ queryPath: API_BASE_URL })
+    );
 
     /**
-     * Note that "result" given above has a property called "current" and "result.current" has 
+     * Note that "result" given above has a property called "current" and "result.current" has
      * the exact shape with the return value of "useAPI" hook.
-     * Referring to "/src/hooks/useAPI.js" file, it can be seen that it returns an array object, 
+     * Referring to "/src/hooks/useAPI.js" file, it can be seen that it returns an array object,
      * which is "[apiData, isLoading, isError]".
      */
 
