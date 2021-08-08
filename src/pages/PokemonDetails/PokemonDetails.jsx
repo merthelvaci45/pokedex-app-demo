@@ -2,15 +2,14 @@ import { useParams } from "react-router-dom";
 
 import { useAPI } from "../../hooks";
 import { PokemonDetailsModel } from "../../models";
+import { API_BASE_URL } from "../../utils";
 
 import Layout from "../../components/Layout";
 import PokemonDetailsCard from "../../components/PokemonDetailsCard";
 
 const PokemonDetails = () => {
   const { id } = useParams(); // extract dynamic "id" parameter from page URL, e.g. "/pokemons/4", where id = 4
-  const [apiData] = useAPI({
-    queryString: `${id}`,
-  }); // fetch data for a particular pokemon from API. an example request path: https://pokeapi.co/api/v2/pokemon/1/
+  const [apiData] = useAPI({ queryPath: `${API_BASE_URL}/${id}` }); // fetch data for a particular pokemon from API. an example request path: https://pokeapi.co/api/v2/pokemon/1/
 
   /**
    * "pokemonDetails" is a class which is defined by the blueprint of "PokemonDetailsModel".

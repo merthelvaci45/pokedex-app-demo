@@ -5,12 +5,12 @@ import Spinner from "../../components/Spinner";
 import PokemonItem from "../../components/PokemonItem";
 
 import { useAPI } from "../../hooks";
-import { splitUrl } from "../../utils";
+import { API_BASE_URL, splitUrl } from "../../utils";
 
 /// splitUrl(pokemon.url, { splitBy: "/" }) returns an array, e.g. ["https:", "", "pokeapi.co", "api", "v2", "pokemon", "1", ""]
 /// where pokemon.url = "https://pokeapi.co/api/v2/pokemon/1/". 6th element of this array gives the particular index of each pokemon
 const AllPokemons = () => {
-  const [allPokemons, isLoading] = useAPI({});
+  const [allPokemons, isLoading] = useAPI({ queryPath: API_BASE_URL });
 
   return isLoading ? (
     <Spinner isLargeSpinner />
